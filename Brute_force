@@ -1,0 +1,30 @@
+def maxGoodLength(self,arr):
+        n=len(arr)
+        m=len(arr[0])
+        maxi=min(len(arr[0]),len(arr))
+        mini=1
+        output=0
+        while mini<=maxi:
+            mid=(mini+maxi)//2
+            check=False
+            for i in range(n-mid+1):
+                for j in range(m-mid+1):
+                    check=True
+                    for r in range(i,i+mid):
+                        for c in range(j,j+mid):
+                            if arr[r][c]<mid:
+                                check=False
+                                break
+                        if not check:
+                            break
+                    if check:
+                        check=True
+                        break
+                if check:
+                    break
+            if check:
+                output=mid
+                mini=mid+1
+            else:
+                maxi=mid-1
+        return output
